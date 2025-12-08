@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_input.c                                      :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: komatsuk <komatsuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/07 02:33:16 by komatsuk          #+#    #+#             */
-/*   Updated: 2025/12/07 03:38:50 by komatsuk         ###   ########.fr       */
+/*   Updated: 2025/12/08 17:25:37 by komatsuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static char	*join_arg(int argc, char *argv)
+static char	*join_arg(int argc, char **argv)
 {
 	char	*args_joined;
 	char	*tmp;
@@ -55,11 +55,48 @@ static char	**split_token(int argc, char *argv[])
 	return (tokens);
 }
 
+static void	free_tokens(char **tokens)
+{
+	size_t	i;
+
+	i = 0;
+	while (tokens[i])
+	{
+		free(tokens[i]);
+		i++;
+	}
+	free(tokens);
+}
+
+static t_stack	*tokens_to_lst(t_stack *stack, char **tokens)
+{
+	t_node	*new;
+	int		value;
+
+	while (tokens[stack->size])
+	{
+		if (!my_mimic_atoi(tokens[stack->size], &value))
+		{
+			free_tokens(tokens);
+			return (free_stack_ret_null(stack));
+		}
+		new = create_node(value);
+		if (!new)
+		{
+			free_tokens(tokens);
+			return (free_stack_ret_null(stack));
+		}
+		append_node(stack, new);
+		stack->size++;
+	}
+	free_tokens(tokens);
+	return (stack);
+}
+
 t_stack	*args_to_lst(int argc, char *argv[])
 {
-	t_stack	*stack;
 	char	**tokens;
-	size_t	i;
+	t_stack	*stack;
 
 	tokens = split_token(argc, argv);
 	if (!tokens)
@@ -67,17 +104,7 @@ t_stack	*args_to_lst(int argc, char *argv[])
 	stack = init_stack();
 	if (!stack)
 		return (NULL);
-	i = 0;
-	while (tokens[i])
-	{
-		if (stack->size == 0)
-		{
-
-		}
-		else
-		{
-			
-		}
-		i++;
-	}
+	if (!(tokens_to_lst(stack, tokens)))
+		return (NULL);
+	return (stack);
 }

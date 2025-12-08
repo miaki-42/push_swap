@@ -6,7 +6,7 @@
 /*   By: komatsuk <komatsuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/07 02:12:20 by komatsuk          #+#    #+#             */
-/*   Updated: 2025/12/07 03:17:28 by komatsuk         ###   ########.fr       */
+/*   Updated: 2025/12/08 17:24:07 by komatsuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,31 @@
 
 int	main(int argc, char *argv[])
 {
-	t_stack	*stack_a;
-	t_stack	*stack_b;
+	t_stack	*stack_a = NULL;
+	// t_stack	*stack_b;
 
 	if (argc > 1)
 	{
-		// 入力 (エラーチェック、strjoin+split、構造体に格納)
-
+		// 入力
+		stack_a = args_to_lst(argc, argv);
+		if (!stack_a)
+			return (ft_putstr_fd("Error\n", 2), 1);
 
 
 		// 座標圧縮 (構造体.sizeでmalloc、バブルソート、値の付け替え二部探索)
 	
 		// ソート
 	}
+
+	// てすてす
+	t_node	*now;
+	now = stack_a->top;
+	for (size_t i=0; i <= stack_a->size; i++)
+	{
+		ft_putnbr_fd(now->value, 1);
+		now = now->next;
+	}
+
 
 	return (0);
 }
