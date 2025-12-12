@@ -6,7 +6,7 @@
 /*   By: komatsuk <komatsuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/13 01:49:11 by komatsuk          #+#    #+#             */
-/*   Updated: 2025/12/13 02:29:04 by komatsuk         ###   ########.fr       */
+/*   Updated: 2025/12/13 02:33:31 by komatsuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,11 @@ void	sort3(t_stack *stack_a)
 }
 
 void	sort4(t_stack *stack_a, t_stack *stack_b)
+{
+	
+}
+
+void	sort5(t_stack *stack_a, t_stack *stack_b)
 {
 	
 }
