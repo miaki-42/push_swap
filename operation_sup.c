@@ -1,35 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   operation_sup.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: komatsuk <komatsuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 11:53:24 by komatsuk          #+#    #+#             */
-/*   Updated: 2025/12/10 18:18:13 by komatsuk         ###   ########.fr       */
+/*   Updated: 2025/12/13 02:05:55 by komatsuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push_a(t_stack *stack_a, t_stack *stack_b)
+t_node	*pop(t_stack *stack)
 {
-	t_node	*top_a;
-	t_node	*top_b;
+	t_node	*node;
+	t_node	*top;
 
-	if (stack_b->size == 0)
-		return ;
-	top_b = stack_b->top;
-	top_b->prev->next = top_b->next;
-	top_b->next->prev = top_b->prev;
-	stack_b->top = top_b->next;
-	stack_b->size--;
-	top_a = stack_a->top;
-	top_a->prev->next = top_b;
-	top_b->prev = top_a->prev;
-	top_b->next = top_a;
-	top_a->prev = top_b;
-	stack_a->top = top_b;
-	stack_a->size++;
+	node = stack->top;
+	if (stack->size == 1)
+		stack->top = NULL;
+	else if (stack->size >= 2)
+	{
+		top = stack->top;
+		top->prev->next = top->next;
+		top->next->prev = top->prev;
+		stack->top = top->next;
+	}
+	stack->size--;
+	return (node);
 }
 
+void	prepend(t_stack *stack, t_node *node)
+{
+	t_node	*top;
+
+	if (stack->size == 0)
+	{
+		node->prev = node;
+		node->next = node;
+	}
+	else
+	{
+		top = stack->top;
+		top->prev->next = node;
+		node->prev = top->prev;
+		node->next = top;
+		top->prev = node;
+	}
+	stack->top = node;
+	stack->size++;
+}

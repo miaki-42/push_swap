@@ -6,13 +6,13 @@
 /*   By: komatsuk <komatsuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/07 02:33:16 by komatsuk          #+#    #+#             */
-/*   Updated: 2025/12/08 17:25:37 by komatsuk         ###   ########.fr       */
+/*   Updated: 2025/12/13 02:27:08 by komatsuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static char	*join_arg(int argc, char **argv)
+static char	*join_args(int argc, char **argv)
 {
 	char	*args_joined;
 	char	*tmp;
@@ -40,12 +40,12 @@ static char	*join_arg(int argc, char **argv)
 	return (args_joined);
 }
 
-static char	**split_token(int argc, char *argv[])
+static char	**split_tokens(int argc, char *argv[])
 {
 	char	*args_joined;
 	char	**tokens;
 
-	args_joined = join_arg(argc, argv);
+	args_joined = join_args(argc, argv);
 	if (!args_joined)
 		return (NULL);
 	tokens = ft_split(args_joined, ' ');
@@ -68,43 +68,43 @@ static void	free_tokens(char **tokens)
 	free(tokens);
 }
 
-static t_stack	*tokens_to_lst(t_stack *stack, char **tokens)
+static t_stack	*tokens_to_lst(t_stack *stack_a, char **tokens)
 {
 	t_node	*new;
 	int		value;
 
-	while (tokens[stack->size])
+	while (tokens[stack_a->size])
 	{
-		if (!my_mimic_atoi(tokens[stack->size], &value))
+		if (!my_mimic_atoi(tokens[stack_a->size], &value))
 		{
 			free_tokens(tokens);
-			return (free_stack_ret_null(stack));
+			return (free_stack_ret_null(stack_a));
 		}
 		new = create_node(value);
 		if (!new)
 		{
 			free_tokens(tokens);
-			return (free_stack_ret_null(stack));
+			return (free_stack_ret_null(stack_a));
 		}
-		append_node(stack, new);
-		stack->size++;
+		append_node(stack_a, new);
+		stack_a->size++;
 	}
 	free_tokens(tokens);
-	return (stack);
+	return (stack_a);
 }
 
 t_stack	*args_to_lst(int argc, char *argv[])
 {
 	char	**tokens;
-	t_stack	*stack;
+	t_stack	*stack_a;
 
-	tokens = split_token(argc, argv);
+	tokens = split_tokens(argc, argv);
 	if (!tokens)
 		return (NULL);
-	stack = init_stack();
-	if (!stack)
+	stack_a = init_stack(0);
+	if (!stack_a)
 		return (NULL);
-	if (!(tokens_to_lst(stack, tokens)))
+	if (!(tokens_to_lst(stack_a, tokens)))
 		return (NULL);
-	return (stack);
+	return (stack_a);
 }

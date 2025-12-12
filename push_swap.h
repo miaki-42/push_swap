@@ -6,7 +6,7 @@
 /*   By: komatsuk <komatsuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/07 02:19:14 by komatsuk          #+#    #+#             */
-/*   Updated: 2025/12/10 18:21:38 by komatsuk         ###   ########.fr       */
+/*   Updated: 2025/12/13 02:27:36 by komatsuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,33 +22,35 @@ typedef struct s_node
 	struct s_node	*next;
 }	t_node;
 
+// stack-nbr
 typedef struct s_stack
 {
 	t_node	*top;
 	size_t	size;
+	int		nbr;
 }	t_stack;
 
 // utils: libftに移動？
 void	*free_ret_null(void *ptr);
+int		puterr(void);
 
 // parse
 t_stack	*args_to_lst(int argc, char *argv[]);
 
 // stack
-t_stack	*init_stack(void);
+t_stack	*init_stack(int nbr);
 t_node	*create_node(int value);
 void	append_node(t_stack *stack, t_node *new);
 void	*free_stack_ret_null(t_stack *stack);
 
 // operation
-void	swap_a(t_stack *stack);
-void	swap_b(t_stack *stack);
-void	push_a(t_stack *stack_a, t_stack *stack_b);
+void	swap(t_stack *stack);
+void	push(t_stack *stack1, t_stack *stack2);
+void	rotate(t_stack *stack);
+void	reverse_rotate(t_stack *stack);
 
-void	rotate_a(t_stack *stack);
-void	rotate_b(t_stack *stack);
-void	reverse_rotate_a(t_stack *stack);
-void	reverse_rotate_b(t_stack *stack);
-
+// operation_sup
+t_node	*pop(t_stack *stack);
+void	prepend(t_stack *stack, t_node *node);
 
 #endif
