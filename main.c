@@ -6,7 +6,7 @@
 /*   By: komatsuk <komatsuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/07 02:12:20 by komatsuk          #+#    #+#             */
-/*   Updated: 2025/12/13 02:25:43 by komatsuk         ###   ########.fr       */
+/*   Updated: 2025/12/13 12:14:33 by komatsuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int argc, char *argv[])
 			return (puterr());
 
 
-		// 座標圧縮 (構造体.sizeでmalloc、バブルソート、値の付け替え二部探索)
+		// 座標圧縮 (構造体.sizeでmalloc、バブルソート、値の付け替え二部探索、同値のエラーチェック)
 	
 		// ソート
 	}
@@ -39,9 +39,8 @@ int	main(int argc, char *argv[])
 		now = now->next;
 	}
 	ft_putchar_fd('\n', 1);
-	stack_b = args_to_lst(argc, argv);
-	push_a(stack_a, stack_b);
-	push_a(stack_a, stack_b);
+	stack_b = init_stack(1);
+	sort5(stack_a, stack_b);
 	now = stack_a->top;
 	for (size_t i=0; i < stack_a->size; i++)
 	{

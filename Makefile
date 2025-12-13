@@ -1,6 +1,6 @@
 NAME = push_swap
 
-SRCS = main.c parse.c stack.c operation.c operation_sup.c utils.c
+SRCS = main.c parse.c stack.c operation.c operation_sup.c sort_small.c utils.c
 OBJS = $(SRCS:.c=.o)
 
 LIBFT_DIR = libft

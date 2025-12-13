@@ -6,7 +6,7 @@
 /*   By: komatsuk <komatsuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/07 02:19:14 by komatsuk          #+#    #+#             */
-/*   Updated: 2025/12/13 02:27:36 by komatsuk         ###   ########.fr       */
+/*   Updated: 2025/12/13 11:59:12 by komatsuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ t_stack	*init_stack(int nbr);
 t_node	*create_node(int value);
 void	append_node(t_stack *stack, t_node *new);
 void	*free_stack_ret_null(t_stack *stack);
+bool	is_sorted(t_stack *stack);
 
 // operation
 void	swap(t_stack *stack);
@@ -52,5 +53,11 @@ void	reverse_rotate(t_stack *stack);
 // operation_sup
 t_node	*pop(t_stack *stack);
 void	prepend(t_stack *stack, t_node *node);
+
+// sort_small
+void	sort2(t_stack *stack_a);
+void	sort3(t_stack *stack_a);
+void	sort4(t_stack *stack_a, t_stack *stack_b);
+void	sort5(t_stack *stack_a, t_stack *stack_b);
 
 #endif
