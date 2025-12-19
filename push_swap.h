@@ -6,7 +6,7 @@
 /*   By: komatsuk <komatsuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/07 02:19:14 by komatsuk          #+#    #+#             */
-/*   Updated: 2025/12/19 17:21:25 by komatsuk         ###   ########.fr       */
+/*   Updated: 2025/12/20 03:37:54 by komatsuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,12 @@ typedef struct s_node
 	struct s_node	*next;
 }	t_node;
 
-// stack-nbr
 typedef struct s_stack
 {
 	t_node	*top;
 	size_t	size;
 	int		nbr;
 }	t_stack;
-
 
 // parse
 t_stack	*args_to_lst(int argc, char *argv[]);
@@ -54,15 +52,13 @@ void	reverse_rotate(t_stack *stack);
 t_node	*pop(t_stack *stack);
 void	prepend(t_stack *stack, t_node *node);
 
-// sort_small
-void	sort_under6(t_stack *stack_a, t_stack *stack_b);
-
 // sort
-bool	is_sorted(t_stack *stack);
+void	sort_under5(t_stack *stack_a, t_stack *stack_b);
+void	radix_sort(t_stack *stack_a, t_stack *stack_b);
 
 // utils
 void	*free_ret_null(void *ptr);
-int		puterr(void);
+void	puterr(void);
 void	display_stack(t_stack *stack);
 
 #endif

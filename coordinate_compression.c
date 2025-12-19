@@ -6,7 +6,7 @@
 /*   By: komatsuk <komatsuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 15:55:30 by komatsuk          #+#    #+#             */
-/*   Updated: 2025/12/19 17:24:06 by komatsuk         ###   ########.fr       */
+/*   Updated: 2025/12/20 03:37:21 by komatsuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static int	binary_search(int *arr, int size, int n)
 	{
 		index = (left + right) / 2;
 		if (n == arr[index])
-			break;
+			break ;
 		else if (n < arr[index])
 			right = index - 1;
 		else
@@ -98,9 +98,15 @@ bool	compression(t_stack *stack_a)
 
 	arr = toarray(stack_a);
 	if (!arr)
+	{
+		puterr();
 		return (false);
+	}
 	if (!bubble_sort(arr, stack_a))
+	{
+		puterr();
 		return (false);
+	}
 	now = stack_a->top;
 	i = 0;
 	while (i < stack_a->size)

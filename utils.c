@@ -6,7 +6,7 @@
 /*   By: komatsuk <komatsuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/07 02:53:31 by komatsuk          #+#    #+#             */
-/*   Updated: 2025/12/13 00:48:10 by komatsuk         ###   ########.fr       */
+/*   Updated: 2025/12/20 03:04:50 by komatsuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,9 @@ void	*free_ret_null(void *ptr)
 	return (NULL);
 }
 
-int	puterr(void)
+void	puterr(void)
 {
 	ft_putstr_fd("Error\n", 2);
-	return (1);
 }
 
 void	display_stack(t_stack *stack)

@@ -6,7 +6,7 @@
 /*   By: komatsuk <komatsuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/07 02:33:16 by komatsuk          #+#    #+#             */
-/*   Updated: 2025/12/19 17:28:26 by komatsuk         ###   ########.fr       */
+/*   Updated: 2025/12/20 03:36:53 by komatsuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,11 +101,20 @@ t_stack	*args_to_lst(int argc, char *argv[])
 
 	tokens = split_tokens(argc, argv);
 	if (!tokens)
+	{
+		puterr();
 		return (NULL);
+	}
 	stack_a = init_stack(0);
 	if (!stack_a)
+	{
+		puterr();
 		return (NULL);
+	}
 	if (!(tokens_to_lst(stack_a, tokens)))
+	{
+		puterr();
 		return (NULL);
+	}
 	return (stack_a);
 }

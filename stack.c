@@ -6,7 +6,7 @@
 /*   By: komatsuk <komatsuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/07 03:29:56 by komatsuk          #+#    #+#             */
-/*   Updated: 2025/12/19 16:02:13 by komatsuk         ###   ########.fr       */
+/*   Updated: 2025/12/20 03:08:40 by komatsuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@ t_stack	*create_stack_b(t_stack *stack_a)
 
 	stack_b = init_stack(1);
 	if (!stack_b)
+	{
+		puterr();
 		return (free_stack_ret_null(stack_a));
+	}
 	return (stack_b);
 }
 

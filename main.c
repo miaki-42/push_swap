@@ -6,7 +6,7 @@
 /*   By: komatsuk <komatsuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/07 02:12:20 by komatsuk          #+#    #+#             */
-/*   Updated: 2025/12/19 17:25:00 by komatsuk         ###   ########.fr       */
+/*   Updated: 2025/12/20 03:31:16 by komatsuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,24 @@ int	main(int argc, char *argv[])
 	t_stack	*stack_a;
 	t_stack	*stack_b;
 
-	if (argc > 1)
+	stack_a = args_to_lst(argc, argv);
+	if (!stack_a)
+		return (1);
+	if (stack_a->size != 0)
 	{
-		stack_a = args_to_lst(argc, argv);
-		if (!stack_a)
-			return (puterr());
 		if (!compression(stack_a))
-			return (puterr());
-	
-		// ソート
+			return (1);
 		stack_b = create_stack_b(stack_a);
 		if (!stack_b)
-			return (puterr());
-		// sort(stack_a, stack_b);
+			return (1);
+		if (stack_a->size <= 5)
+			sort_under5(stack_a, stack_b);
+		else
+			radix_sort(stack_a, stack_b);
+		free_stack_ret_null(stack_a);
+		free_stack_ret_null(stack_b);
 	}
-
-	// テスト
-	display_stack(stack_a);
-	free_stack_ret_null(stack_a);
-	free_stack_ret_null(stack_b);
-
 	return (0);
 }
 
+// 要確認: stack->size == 0
