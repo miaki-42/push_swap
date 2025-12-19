@@ -6,7 +6,7 @@
 /*   By: komatsuk <komatsuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 15:55:30 by komatsuk          #+#    #+#             */
-/*   Updated: 2025/12/19 17:21:57 by komatsuk         ###   ########.fr       */
+/*   Updated: 2025/12/19 17:24:06 by komatsuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,5 +109,6 @@ bool	compression(t_stack *stack_a)
 		now = now->next;
 		i++;
 	}
+	free(arr);
 	return (true);
 }

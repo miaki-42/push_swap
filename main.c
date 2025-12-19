@@ -6,7 +6,7 @@
 /*   By: komatsuk <komatsuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/07 02:12:20 by komatsuk          #+#    #+#             */
-/*   Updated: 2025/12/19 17:12:01 by komatsuk         ###   ########.fr       */
+/*   Updated: 2025/12/19 17:25:00 by komatsuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,13 @@ int	main(int argc, char *argv[])
 		stack_b = create_stack_b(stack_a);
 		if (!stack_b)
 			return (puterr());
+		// sort(stack_a, stack_b);
 	}
 
 	// テスト
 	display_stack(stack_a);
-	sort_under6(stack_a, stack_b);
-	display_stack(stack_a);
+	free_stack_ret_null(stack_a);
+	free_stack_ret_null(stack_b);
 
 	return (0);
 }
