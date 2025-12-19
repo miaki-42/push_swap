@@ -14,39 +14,30 @@
 
 int	main(int argc, char *argv[])
 {
-	t_stack	*stack_a = NULL;
+	t_stack	*stack_a;
 	t_stack	*stack_b;
 
 	if (argc > 1)
 	{
-		// 入力
 		stack_a = args_to_lst(argc, argv);
 		if (!stack_a)
 			return (puterr());
-
-
+		stack_b = init_stack(1);
+		if (!stack_b)
+		{
+			free_stack_ret_null(stack_a);
+			return (puterr());
+		}
 		// 座標圧縮 (構造体.sizeでmalloc、バブルソート、値の付け替え二部探索、同値のエラーチェック)
-	
+
 		// ソート
+		// sort();
 	}
 
-	// てすてす
-	t_node	*now;
-	now = stack_a->top;
-	for (size_t i=0; i < stack_a->size; i++)
-	{
-		ft_putnbr_fd(now->value, 1);
-		now = now->next;
-	}
-	ft_putchar_fd('\n', 1);
-	stack_b = init_stack(1);
-	sort5(stack_a, stack_b);
-	now = stack_a->top;
-	for (size_t i=0; i < stack_a->size; i++)
-	{
-		ft_putnbr_fd(now->value, 1);
-		now = now->next;
-	}
+	// テスト
+	display_stack(stack_a);
+	sort_under6(stack_a, stack_b);
+	display_stack(stack_a);
 
 	return (0);
 }

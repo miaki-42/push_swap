@@ -15,6 +15,8 @@
 
 # include "libft.h"
 
+# include <stdio.h>
+
 typedef struct s_node
 {
 	int				value;
@@ -33,6 +35,7 @@ typedef struct s_stack
 // utils: libftに移動？
 void	*free_ret_null(void *ptr);
 int		puterr(void);
+void	display_stack(t_stack *stack);
 
 // parse
 t_stack	*args_to_lst(int argc, char *argv[]);
@@ -55,9 +58,6 @@ t_node	*pop(t_stack *stack);
 void	prepend(t_stack *stack, t_node *node);
 
 // sort_small
-void	sort2(t_stack *stack_a);
-void	sort3(t_stack *stack_a);
-void	sort4(t_stack *stack_a, t_stack *stack_b);
-void	sort5(t_stack *stack_a, t_stack *stack_b);
+void	sort_under6(t_stack *stack_a, t_stack *stack_b);
 
 #endif

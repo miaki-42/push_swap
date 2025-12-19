@@ -32,11 +32,11 @@ void	swap(t_stack *stack)
 		first->next = third;
 		third->prev = first;
 		stack->top = second;
+		if (stack->nbr == 0)
+			ft_putstr_fd("sa\n", 1);
+		else
+			ft_putstr_fd("sb\n", 1);
 	}
-	if (stack->nbr == 0)
-		ft_putstr_fd("sa\n", 1);
-	else
-		ft_putstr_fd("sb\n", 1);
 }
 
 void	push(t_stack *stack1, t_stack *stack2)
@@ -47,29 +47,33 @@ void	push(t_stack *stack1, t_stack *stack2)
 	{
 		node = pop(stack2);
 		prepend(stack1, node);
+		if (stack1->nbr == 0)
+			ft_putstr_fd("pa\n", 1);
+		else
+			ft_putstr_fd("pb\n", 1);
 	}
-	if (stack1->nbr == 0)
-		ft_putstr_fd("pa\n", 1);
-	else
-		ft_putstr_fd("pb\n", 1);
 }
 
 void	rotate(t_stack *stack)
 {
 	if (stack->size >= 2)
+	{
 		stack->top = stack->top->next;
-	if (stack->nbr == 0)
-		ft_putstr_fd("ra\n", 1);
-	else
-		ft_putstr_fd("rb\n", 1);
+		if (stack->nbr == 0)
+			ft_putstr_fd("ra\n", 1);
+		else
+			ft_putstr_fd("rb\n", 1);		
+	}
 }
 
 void	reverse_rotate(t_stack *stack)
 {
 	if (stack->size >= 2)
+	{
 		stack->top = stack->top->prev;
-	if (stack->nbr == 0)
-		ft_putstr_fd("rra\n", 1);
-	else
-		ft_putstr_fd("rrb\n", 1);
+		if (stack->nbr == 0)
+			ft_putstr_fd("rra\n", 1);
+		else
+			ft_putstr_fd("rrb\n", 1);
+	}
 }

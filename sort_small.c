@@ -12,79 +12,110 @@
 
 #include "push_swap.h"
 
-void	sort2(t_stack *stack_a)
+static void	sort_just3(t_stack *stack)
 {
-	if (stack_a->top == 0)
-		return ;
-	else
-		swap(stack_a);
-}
+	int	val1;
+	int	val2;
+	int	val3;
 
-void	sort3(t_stack *stack_a)
-{
-	int	value1;
-	int	value2;
-
-	value1 = stack_a->top->value;
-	value2 = stack_a->top->next->value;
-	if (value1 == 0 && value2 == 1)
+	val1 = stack->top->value;
+	val2 = stack->top->next->value;
+	val3 = stack->top->prev->value;
+	if (val1 < val2 && val2 < val3)
 		return ;
-	else if (value1 == 0 && value2 == 2)
+	else if (val1 < val3 && val3 < val2)
 	{
-		reverse_rotate(stack_a);
+		reverse_rotate(stack);
+		swap(stack);
 	}
-	else if (value1 == 1 && value2 == 0)
-		swap(stack_a);
-	else if (value1 == 1 && value2 == 2)
-		reverse_rotate(stack_a);
-	else if (value1 == 2 && value2 == 0)
-		rotate(stack_a);
-	else if (value1 == 2 && value2 == 1)
+	else if (val2 < val1 && val1 < val3)
+		swap(stack);
+	else if (val2 < val3 && val3 < val1)
+		rotate(stack);
+	else if (val3 < val1 && val1 < val2)
+		reverse_rotate(stack);
+	else if (val3 < val2 && val2 < val1)
 	{
-		rotate(stack_a);
-		swap(stack_a);
+		rotate(stack);
+		swap(stack);
 	}
 }
 
-void	sort4(t_stack *stack_a, t_stack *stack_b)
+static void	sort_just3_rev(t_stack *stack)
 {
-	int		value4;
+	int	val1;
+	int	val2;
+	int	val3;
 
-	value4 = stack_a->top->prev->value;
-	if (value4 == 0)
+	val1 = stack->top->value;
+	val2 = stack->top->next->value;
+	val3 = stack->top->prev->value;
+	if (val1 < val2 && val2 < val3)
 	{
-		reverse_rotate(stack_a);
-		if (is_sorted(stack_a))
-			return ;
-		push(stack_b, stack_a);
+		rotate(stack);
+		swap(stack);
 	}
-	while (value4 != 0 && stack_a->size > 3)
+	else if (val1 < val3 && val3 < val2)
+		rotate(stack);
+	else if (val2 < val1 && val1 < val3)
+		reverse_rotate(stack);
+	else if (val2 < val3 && val3 < val1)
 	{
-		if (is_sorted(stack_a))
+		reverse_rotate(stack);
+		swap(stack);
+	}
+	else if (val3 < val1 && val1 < val2)
+		swap(stack);
+	else if (val3 < val2 && val2 < val1)
+		return ;
+}
+
+static void	sort_under3(t_stack *stack)
+{
+	if (stack->size <= 1)
+		return ;
+	else if (stack->size == 2)
+	{
+		if (stack->top->value < stack->top->next->value)
 			return ;
-		if (stack_a->top->value == 0)
-			push(stack_b, stack_a);
 		else
-			rotate(stack_a);
+			swap(stack);
 	}
-	sort3(stack_a);
-	push(stack_a, stack_b);
+	else if (stack->size == 3)
+		sort_just3(stack);
 }
 
-void	sort5(t_stack *stack_a, t_stack *stack_b)
+static void	sort_under3_rev(t_stack *stack)
 {
+	if (stack->size <= 1)
+		return ;
+	else if (stack->size == 2)
+	{
+		if (stack->top->value < stack->top->next->value)
+			swap(stack);
+		else
+			return ;
+	}
+	else if (stack->size == 3)
+		sort_just3_rev(stack);
+}
+
+void	sort_under6(t_stack *stack_a, t_stack *stack_b)
+{
+	size_t	n;
+
+	n = stack_a->size;
 	while (stack_a->size > 3)
 	{
-		if (stack_a->size == 5 && is_sorted(stack_a))
+		if (stack_a->size == n && is_sorted(stack_a))
 			return ;
-		if (stack_a->top->value == 0 || stack_a->top->value == 1)
+		if (stack_a->top->value <= (int)n - 4)
 			push(stack_b, stack_a);
 		else
 			rotate(stack_a);
 	}
-	if (stack_b->top->value == 0)
-		swap(stack_b);
-	sort3(stack_a);
-	push(stack_a, stack_b);
-	push(stack_a, stack_b);
+	sort_under3(stack_a);
+	sort_under3_rev(stack_b);
+	while (stack_b->size > 0)
+		push(stack_a, stack_b);
 }

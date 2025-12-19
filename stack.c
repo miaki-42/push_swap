@@ -75,17 +75,19 @@ void	*free_stack_ret_null(t_stack *stack)
 
 bool	is_sorted(t_stack *stack)
 {
+	t_node	*now;
 	int		prev;
 	size_t	i;
 
+	now = stack->top;
 	prev = -1;
 	i = 0;
 	while (i < stack->size)
 	{
-		if (stack->top->value < prev)
+		if (now->value < prev)
 			return (false);
-		prev = stack->top->value;
-		stack->top = stack->top->next;
+		prev = now->value;
+		now = now->next;
 		i++;
 	}
 	return (true);
