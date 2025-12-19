@@ -6,7 +6,7 @@
 /*   By: komatsuk <komatsuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/07 02:33:16 by komatsuk          #+#    #+#             */
-/*   Updated: 2025/12/13 02:27:08 by komatsuk         ###   ########.fr       */
+/*   Updated: 2025/12/19 17:09:14 by komatsuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static char	*join_args(int argc, char **argv)
 		args_joined = ft_strjoin(args_joined, delim);
 		if (!args_joined)
 			return (free_ret_null(tmp));
+		free(tmp);
 		i++;
 	}
 	return (args_joined);

@@ -6,7 +6,7 @@
 /*   By: komatsuk <komatsuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/07 03:29:56 by komatsuk          #+#    #+#             */
-/*   Updated: 2025/12/13 12:11:54 by komatsuk         ###   ########.fr       */
+/*   Updated: 2025/12/19 16:02:13 by komatsuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,16 @@ t_stack	*init_stack(int nbr)
 	stack->size = 0;
 	stack->nbr = nbr;
 	return (stack);
+}
+
+t_stack	*create_stack_b(t_stack *stack_a)
+{
+	t_stack	*stack_b;
+
+	stack_b = init_stack(1);
+	if (!stack_b)
+		return (free_stack_ret_null(stack_a));
+	return (stack_b);
 }
 
 t_node	*create_node(int value)
@@ -71,24 +81,4 @@ void	*free_stack_ret_null(t_stack *stack)
 	}
 	free(stack);
 	return (NULL);
-}
-
-bool	is_sorted(t_stack *stack)
-{
-	t_node	*now;
-	int		prev;
-	size_t	i;
-
-	now = stack->top;
-	prev = -1;
-	i = 0;
-	while (i < stack->size)
-	{
-		if (now->value < prev)
-			return (false);
-		prev = now->value;
-		now = now->next;
-		i++;
-	}
-	return (true);
 }

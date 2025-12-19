@@ -62,7 +62,7 @@ void	rotate(t_stack *stack)
 		if (stack->nbr == 0)
 			ft_putstr_fd("ra\n", 1);
 		else
-			ft_putstr_fd("rb\n", 1);		
+			ft_putstr_fd("rb\n", 1);	
 	}
 }
 

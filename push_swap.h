@@ -6,16 +6,14 @@
 /*   By: komatsuk <komatsuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/07 02:19:14 by komatsuk          #+#    #+#             */
-/*   Updated: 2025/12/13 11:59:12 by komatsuk         ###   ########.fr       */
+/*   Updated: 2025/12/19 17:21:25 by komatsuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP
-# define PUSH_SWAP
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
 # include "libft.h"
-
-# include <stdio.h>
 
 typedef struct s_node
 {
@@ -32,20 +30,19 @@ typedef struct s_stack
 	int		nbr;
 }	t_stack;
 
-// utils: libftに移動？
-void	*free_ret_null(void *ptr);
-int		puterr(void);
-void	display_stack(t_stack *stack);
 
 // parse
 t_stack	*args_to_lst(int argc, char *argv[]);
 
 // stack
 t_stack	*init_stack(int nbr);
+t_stack	*create_stack_b(t_stack *stack_a);
 t_node	*create_node(int value);
 void	append_node(t_stack *stack, t_node *new);
 void	*free_stack_ret_null(t_stack *stack);
-bool	is_sorted(t_stack *stack);
+
+// coordinate_compression
+bool	compression(t_stack *stack_a);
 
 // operation
 void	swap(t_stack *stack);
@@ -59,5 +56,13 @@ void	prepend(t_stack *stack, t_node *node);
 
 // sort_small
 void	sort_under6(t_stack *stack_a, t_stack *stack_b);
+
+// sort
+bool	is_sorted(t_stack *stack);
+
+// utils
+void	*free_ret_null(void *ptr);
+int		puterr(void);
+void	display_stack(t_stack *stack);
 
 #endif
