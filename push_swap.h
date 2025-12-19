@@ -6,7 +6,7 @@
 /*   By: komatsuk <komatsuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/07 02:19:14 by komatsuk          #+#    #+#             */
-/*   Updated: 2025/12/20 03:37:54 by komatsuk         ###   ########.fr       */
+/*   Updated: 2025/12/20 04:35:40 by komatsuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,19 +42,18 @@ void	*free_stack_ret_null(t_stack *stack);
 // coordinate_compression
 bool	compression(t_stack *stack_a);
 
-// operation
+// operation && operation_sup
 void	swap(t_stack *stack);
 void	push(t_stack *stack1, t_stack *stack2);
 void	rotate(t_stack *stack);
 void	reverse_rotate(t_stack *stack);
-
-// operation_sup
 t_node	*pop(t_stack *stack);
 void	prepend(t_stack *stack, t_node *node);
 
-// sort
-void	sort_under5(t_stack *stack_a, t_stack *stack_b);
+// sort && sort_small
+bool	is_sorted(t_stack *stack);
 void	radix_sort(t_stack *stack_a, t_stack *stack_b);
+void	sort_under6(t_stack *stack_a, t_stack *stack_b);
 
 // utils
 void	*free_ret_null(void *ptr);
