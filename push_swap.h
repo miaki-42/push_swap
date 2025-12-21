@@ -6,7 +6,7 @@
 /*   By: komatsuk <komatsuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/07 02:19:14 by komatsuk          #+#    #+#             */
-/*   Updated: 2025/12/20 04:35:40 by komatsuk         ###   ########.fr       */
+/*   Updated: 2025/12/21 12:49:57 by komatsuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,11 @@ void	reverse_rotate(t_stack *stack);
 t_node	*pop(t_stack *stack);
 void	prepend(t_stack *stack, t_node *node);
 
-// sort && sort_small
+// sort && sort_small && komsort
 bool	is_sorted(t_stack *stack);
 void	radix_sort(t_stack *stack_a, t_stack *stack_b);
 void	sort_under6(t_stack *stack_a, t_stack *stack_b);
+void	komsort(t_stack *stack_a, t_stack *stack_b);
 
 // utils
 void	*free_ret_null(void *ptr);

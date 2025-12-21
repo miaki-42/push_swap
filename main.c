@@ -6,7 +6,7 @@
 /*   By: komatsuk <komatsuk@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/07 02:12:20 by komatsuk          #+#    #+#             */
-/*   Updated: 2025/12/20 04:34:34 by komatsuk         ###   ########.fr       */
+/*   Updated: 2025/12/21 12:57:47 by komatsuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int	main(int argc, char *argv[])
 			return (1);
 		if (stack_a->size <= 6)
 			sort_under6(stack_a, stack_b);
+		else if (stack_a->size == 100 || stack_a->size == 500)
+			komsort(stack_a, stack_b);
 		else
 			radix_sort(stack_a, stack_b);
 		free_stack_ret_null(stack_a);
@@ -36,5 +38,3 @@ int	main(int argc, char *argv[])
 	}
 	return (0);
 }
-
-// 要確認: stack->size == 0
